@@ -9,6 +9,7 @@ import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
+import { validateRequest } from './middlewares/validate-request';
 
 const app = express();
 app.set('trust proxy', true);
@@ -30,6 +31,7 @@ app.all('*', () => {
 });
 
 app.use(errorHandler);
+app.use(validateRequest);
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
