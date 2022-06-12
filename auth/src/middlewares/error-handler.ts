@@ -16,11 +16,11 @@ export const errorHandler = (
   next: NextFunction
 ) => {
   if (err instanceof CustomError) {
-    console.log('errored');
     return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
 
   res.status(400).send({
     errors: [{ message: 'Something went wrong' }],
   });
+  console.log(err);
 };
